@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul id="checklists">
+        {% for note in notes %}
+        <li>
+            <div id="note-{{ note.id }}"><a href="/notes/{{ note.id }}">{{ note.title }}</a></div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+</body>
+</html>
