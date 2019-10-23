@@ -4,15 +4,23 @@ from django.utils import timezone
 
 
 class Note(models.Model):
-    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+    text = models.TextField(
+        help_text="Put the details of your note here.",
+        blank=True,
+        null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+# class Comment(models.Model):
+#     comment = models.ForeignKey(to=Note,
+#                                   on_delete=models.CASCADE,
+#                                   related_name='items')
+#     created_date = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+
+#     def __str__(self):
+#         return self.comment
