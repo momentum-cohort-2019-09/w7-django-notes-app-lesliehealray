@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'notes',
     'markdownify',
-    'debug_toolbar'
+    'debug_toolbar',
+    'rest_framework',
 
 ]
 
