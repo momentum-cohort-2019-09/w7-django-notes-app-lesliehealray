@@ -1,16 +1,16 @@
-# from django import forms
-# from notes.models import Note, Tag
+from django import forms
+from notes.models import Note, Comment
 
-# class NoteForm(forms.ModelForm):
 
-#     class Meta:
-#         model = Note
-#         fields = ['title', 'text']
+class NoteForm(forms.ModelForm):
 
-# class TagForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['title', 'description']
 
-#     class Meta:
-#         model = Tag
-#         fields = ['name']
 
-  
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['body']

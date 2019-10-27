@@ -1,8 +1,22 @@
 from django.contrib import admin
-from .models import Note
+
+from notes.models import Note, Comment
 
 
+class CommentInline(admin.TabularInline):
+    model = Comment
+    extra = 3
 
 
-admin.site.register(Note)
- 
+class NoteAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'comment_count',
+        'updated_at',
+    )
+
+    inlines = [CommentInline]
+
+
+admin.site.register(Note, NoteAdmin)
+admin.site.register(Comment)

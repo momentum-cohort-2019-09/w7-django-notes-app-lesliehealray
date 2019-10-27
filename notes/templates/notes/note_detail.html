@@ -1,0 +1,48 @@
+{% extends "notes/base.html" %}
+{% load markdownify %}
+
+{% block title %}Note - {{ note.title }}{% endblock %}
+
+{% load static %}
+
+{% block head %}
+<script>
+let notePk = {{ note.pk }}
+</script>
+<script src="{% static 'js/note_detail.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+  <h3>{{ note.title }} 
+    <small>
+      <a href="{% url 'note_edit' pk=note.pk %}">Edit</a>
+      <a href="{% url 'note_delete' pk=note.pk %}" class="text-danger">Delete</a>
+      <a id="note-reordering-link" href="#">Reorder</a>
+    </small>
+  </h3>
+
+  <div>
+      {{ note.description|markdownify }}
+  </div>
+
+  <ol id="note-comments">
+    {% for comment in note.comments.all %}
+      <li class="note-comment" id="note-list-{{ comment.pk }}" data-pk="{{comment.pk}}">
+        <span class="note-comment-body">{{ comment.body|markdownify }}</span>
+        <form action="{% url 'note_comment_edit' pk=comment.pk %}" method="POST" class="comment-edit-form" id="comment-edit-form-{{ comment.pk }}">
+          {% csrf_token %}
+          <input class="comment-edit-input" type="text" name="body" value="{{ comment.body }}">
+        </form>        
+        <a class="comment-edit-link" href="#" data-comment-pk="{{ comment.pk }}">Edit</a>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <h4>Add a comment to your notes</h4>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ comment_form }}
+    <button type="submit">Add comment</button>
+  </form>
+  
+{% endblock %}

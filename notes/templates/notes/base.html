@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}Leslie's Notes{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.shoelace.style/1.0.0-beta24/shoelace.css">
+  <link rel="stylesheet" href="{% static 'css/note.css' %}">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js'></script>
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="container">
+    <div class="page-header bg-primary">
+      <h1><a class="text-light" href="/">Leslie's Notes</a></h1>
+    </div>
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

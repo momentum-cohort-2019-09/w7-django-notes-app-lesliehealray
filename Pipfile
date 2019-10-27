@@ -7,10 +7,10 @@ verify_ssl = true
 
 [packages]
 django = "*"
-django-debug-toolbar = "*"
-markdownify = "*"
 django-markdownify = "*"
-djangorestframework = "*"
+django-debug-toolbar = "*"
+django-admin-sortable = "*"
+ipdb = "*"
 
 [requires]
 python_version = "3.7"
